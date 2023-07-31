@@ -1,0 +1,14 @@
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/1PCTmrvghT_EIovJ4s89KZtp89t2pO2Jk8BFIItjdO4w/edit#gid=0";
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const sheet = SpreadsheetApp.openByUrl(SHEET_URL).getActiveSheet();
+    const { name, email, message } = data;
+    sheet.appendRow([name, email, message]);
+    return ContentService.createTextOutput("Your message was successfully sent to the Google Sheets database!");
+  } catch (error) {
+    console.error('Error appending data to Google Sheets:', error);
+    return ContentService.createTextOutput("Error appending data to Google Sheets. Please try again later.");
+  }
+}
