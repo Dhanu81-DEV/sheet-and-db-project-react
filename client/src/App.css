@@ -49,6 +49,10 @@ textarea {
   border-bottom: 1px solid #ccc; /* Add a bottom border */
   width: 100%; /* Make the input fields occupy the full width */
 }
+textarea{
+  width: 500px;
+  height: 250px;
+}
 
 button {
   padding: 5px 10px; /* Reduce padding for a smaller button */
@@ -87,6 +91,7 @@ button:hover {
     border: 1px solid #107c10;
     border-radius: 5px;
     margin-top: 10px;
+    width:auto;
 }
 
 /* Button styles */

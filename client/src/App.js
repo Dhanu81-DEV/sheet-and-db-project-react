@@ -38,30 +38,36 @@ const App = () => {
       <form className="form" onSubmit={handleSubmit}>
         {/* Form fields go here */}
         <div>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name"></label>
+          <br />
           <input
             type="text"
             id="name"
             name="name"
+            placeholder='Name'
             value={formData.name}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email"></label>
+          <br />
           <input
             type="email"
             id="email"
             name="email"
+            placeholder='Email'
             value={formData.email}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="message">Message:</label>
+          <label htmlFor="message"></label>
+          <br />
           <textarea
             id="message"
             name="message"
+            placeholder='Message'
             value={formData.message}
             onChange={handleChange}
           />

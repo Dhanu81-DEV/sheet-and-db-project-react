@@ -1,19 +1,19 @@
 
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const axios = require('axios');
+import express, { json } from 'express';
+import mongoose, { connect } from 'mongoose';
+import { json as _json } from 'body-parser';
+import cors from 'cors';
+import { post } from 'axios';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(express.json());
-app.use(bodyParser.json());
+app.use(json());
+app.use(_json());
 app.use(cors());
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/react_form_db', {
+connect('mongodb://127.0.0.1:27017/react_form_db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -42,7 +42,7 @@ app.post('/api/form', async (req, res) => {
 
     const googleSheetsUrl =
       'https://script.google.com/macros/s/AKfycbyrQBjkQyoq1BOH1xUEYgT166dmoIkDPtTHM0HOPmDxFySidy_5NvhyO_ohRdXS4yPm7Q/exec';
-    await axios.post(googleSheetsUrl, req.body);
+    await post(googleSheetsUrl, req.body);
 
     res.status(201).json({ message: 'Form data saved successfully' });
   } catch (error) {
