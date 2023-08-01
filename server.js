@@ -1,4 +1,3 @@
-// server.js
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -13,20 +12,19 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
-// Connect to MongoDB
+
 mongoose.connect('mongodb://127.0.0.1:27017/react_form_db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
   .then(() => {
     console.log('Connected to MongoDB');
-    // Rest of the code...
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
 
-const { Schema, model } = mongoose; // Destructuring for Schema and model
+const { Schema, model } = mongoose; 
 
 const FormSchema = new Schema({
   name: String,
@@ -48,7 +46,7 @@ app.post('/api/form', async (req, res) => {
 
     res.status(201).json({ message: 'Form data saved successfully' });
   } catch (error) {
-    console.error('Error saving form data:', error); // Log the actual error
+    console.error('Error saving form data:', error); 
     res
       .status(500)
       .json({ message: 'Error saving form data. Please try again later.' });

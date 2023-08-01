@@ -1,5 +1,3 @@
-// src/App.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
@@ -11,6 +9,9 @@ const App = () => {
     message: '',
   });
 
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -18,19 +19,22 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     try {
-      await axios.post('/api/form', formData); // Send the request to the backend
-      alert('Form data saved successfully');
-      setFormData({ name: '', email: '', message: '' }); // Reset form fields
+      await axios.post('/api/form', formData);
+      setMessage('Form data saved successfully'); 
+      setFormData({ name: '', email: '', message: '' }); 
     } catch (error) {
       console.error('Error saving form data:', error.message);
-      alert('Error saving form data');
+      setMessage('Error saving form data');
+    } finally {
+      setLoading(false); 
     }
   };
 
   return (
     <div>
-      <h1>React Form with MongoDB and Google Sheets</h1>
+      <h1>Formify: Form Data Collector and Spreadsheet Integration</h1>
       <form className="form" onSubmit={handleSubmit}>
         {/* Form fields go here */}
         <div>
@@ -62,8 +66,10 @@ const App = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={loading}>Submit</button>
       </form>
+      {loading && <div className="loading">Saving...</div>}
+      {message && <div className="message">{message}</div>}
     </div>
   );
 };
