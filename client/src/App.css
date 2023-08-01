@@ -1,7 +1,7 @@
 /* App.css */
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Cosmic', arial;
   margin: 0;
   padding: 0;
   background-color: rgb(196, 239, 236);
@@ -17,9 +17,12 @@ body {
 }
 
 h1 {
+  font-size:35px;
   text-align: center;
   margin-bottom: 20px;
-  font-family: 'Cosmic Sans', sans-serif; /* Change the font-family */
+  font-family: Comic Sans MS,
+    Comic Sans,
+    cursive;
 }
 
 .form {
